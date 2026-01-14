@@ -10,7 +10,7 @@ Un gioco sviluppato in React per il compleanno di un amico commerciale! Evita em
 - ❤️ Sistema di vite (3 cuori)
 - 🏆 Vittoria a 100 punti
 - 📱 Supporto mobile con controlli touch
-- ⌨️ Supporto tastiera per desktop
+- ⌨️ Supporto tastiera per desktop 
 
 ## 🚀 Come giocare
 
