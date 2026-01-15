@@ -2,10 +2,23 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import './Game.css'
 
 const Game = () => {
+    const GAME_WIDTH = 800
+    const GAME_HEIGHT = 600
+    const CAR_WIDTH = 80
+    const CAR_HEIGHT = 120
+    const OBSTACLE_WIDTH = 60
+    const OBSTACLE_HEIGHT = 60
+    const OBSTACLE_SPEED = 4
+    const OBSTACLE_SPAWN_RATE = 800 // millisecondi - più veloce
+    const CAT_SPEED = 0.5 // velocità movimento gattino
+    const CAT_MIN_POSITION = 10
+    const CAT_MAX_POSITION = 90
+    const MAX_LIVES = 4
+
     const [gameStarted, setGameStarted] = useState(false)
     const [gameOver, setGameOver] = useState(false)
     const [gameWon, setGameWon] = useState(false) // stato vittoria
-    const [lives, setLives] = useState(3) // vite iniziali
+    const [lives, setLives] = useState(MAX_LIVES) // vite iniziali
     const [score, setScore] = useState(0)
     const [carPositionX, setCarPositionX] = useState(50) // percentuale da sinistra
     const carPositionY = 20 // percentuale dal basso (fisso)
@@ -19,18 +32,6 @@ const Game = () => {
     const obstacleIntervalRef = useRef(null)
     const catMovementRef = useRef(null)
     const catPositionRef = useRef(50) // ref per la posizione corrente del gattino
-
-    const GAME_WIDTH = 800
-    const GAME_HEIGHT = 600
-    const CAR_WIDTH = 80
-    const CAR_HEIGHT = 120
-    const OBSTACLE_WIDTH = 60
-    const OBSTACLE_HEIGHT = 60
-    const OBSTACLE_SPEED = 4
-    const OBSTACLE_SPAWN_RATE = 800 // millisecondi - più veloce
-    const CAT_SPEED = 0.3 // velocità movimento gattino
-    const CAT_MIN_POSITION = 10
-    const CAT_MAX_POSITION = 90
 
     // Emoji per gli ostacoli
     const obstacleEmojis = ['📧', '😠', '😡', '📨']
@@ -205,7 +206,7 @@ const Game = () => {
         setGameStarted(true)
         setGameOver(false)
         setGameWon(false)
-        setLives(3)
+        setLives(MAX_LIVES)
         setScore(0)
         setCarPositionX(50)
         setCatPosition(50)
@@ -220,7 +221,7 @@ const Game = () => {
         setGameOver(false)
         setGameWon(false)
         setGameStarted(false)
-        setLives(3)
+        setLives(MAX_LIVES)
         setScore(0)
         setCarPositionX(50)
         setCatPosition(50)
@@ -246,7 +247,7 @@ const Game = () => {
                 <h1>🎂 Buon Compleanno! 🎮</h1>
                 <div className="score">Punteggio: {score}</div>
                 <div className="lives-container">
-                    {[...Array(3)].map((_, i) => (
+                    {[...Array(MAX_LIVES)].map((_, i) => (
                         <span key={i} className={`heart ${i < lives ? 'heart-full' : 'heart-empty'}`}>
                             ❤️
                         </span>
@@ -283,7 +284,7 @@ const Game = () => {
                             transform: 'translate(-50%, 50%)',
                         }}
                     >
-                        <img src="/sports-car.svg" alt="Macchina sportiva" className="car-image" />
+                        <img src="honda.png" alt="Macchina sportiva" className="car-image" />
                     </div>
 
                     {/* Ostacoli (email/clienti arrabbiati) */}
@@ -310,7 +311,7 @@ const Game = () => {
                             transform: 'translateX(-50%)',
                         }}
                     >
-                        <img src="/kitten.svg" alt="Cucciolo blu di prussia" className="cat-image" />
+                        <img src="cuccioli-blu-di-russia.png" alt="Cucciolo blu di prussia" className="cat-image" />
                     </div>
                 </div>
             </div>
